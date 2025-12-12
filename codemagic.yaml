@@ -7,16 +7,32 @@ workflows:
       flutter: stable
       xcode: latest
       cocoapods: default
+      groups:
+        - apple_credentials
+      vars:
+        BUNDLE_ID: "com.traveltime.converter"
     scripts:
+      - name: Set up code signing with Apple ID
+        script: |
+          app-store-connect fetch-signing-files "$BUNDLE_ID" \
+            --apple-id=$APPLE_ID \
+            --password=$APP_SPECIFIC_PASSWORD \
+            --type IOS_APP_DEVELOPMENT \
+            --create
+      - name: Add certificates to keychain
+        script: |
+          keychain initialize
+          keychain add-certificates
+          xcode-project use-profiles
       - name: Get Flutter packages
         script: |
           flutter packages pub get
-      - name: Build iOS app for simulator
+      - name: Build iOS app
         script: |
-          flutter build ios --simulator --debug
+          flutter build ipa --release
     artifacts:
-      - build/ios/iphonesimulator/*.app
-      - flutter_drive.log
+      - build/ios/ipa/*.ipa
+      - /tmp/xcodebuild_logs/*.log
     publishing:
       email:
         recipients:
