@@ -10,37 +10,30 @@ dependencies:
   flutter:
     sdk: flutter
   url_launcher: ^6.0.13
-  #english_words: ^4.0.0
   provider: ^6.0.0
-  #http: ^0.13.0
-  #flutter_svg: ^2.0.7
-  intl: ^0.17.0  # <-- Moved under the dependencies section
-  flutter_typeahead: ^4.8.0 # Check the latest version on pub.dev
-
-  #cupertino_icons: ^1.0.2
+  intl: ^0.17.0
+  flutter_typeahead: ^4.8.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
   flutter_lints: 2.0.2
-  #flutter_lints: ^2.0.0
+
 flutter:
   assets:
-    - assets/dollar.png
-    - assets/scale.jpg
-    - assets/gaspump.jpg
-    - assets/exchange.png
-    - assets/travel.jpg
-    - assets/tape.jpg
-    - assets/measures.png
-    - assets/thermometer.jpg
-    - assets/shoesize.png
-    - assets/volume.jpg
+    - lib/assets/dollar.png
+    - lib/assets/scale.jpg
+    - lib/assets/gaspump.jpg
+    - lib/assets/exchange.png
+    - lib/assets/travel.jpg
+    - lib/assets/tape.jpg
+    - lib/assets/measures.png
+    - lib/assets/thermometer.jpg
+    - lib/assets/shoesize.png
+    - lib/assets/volume.jpg
   uses-material-design: true
 
 flutter_icons:
   android: true
   ios: true
-  image_path: "assets/travel.jpg"  
- 
+  image_path: "lib/assets/travel.jpg"
