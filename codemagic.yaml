@@ -14,9 +14,12 @@ workflows:
     scripts:
       - name: Fetch signing files (App Store Connect API)
         script: |
+          export APP_STORE_CONNECT_ISSUER_ID=c32696c2-4192-4ac3-a840-0da105abe126
+          export APP_STORE_CONNECT_KEY_IDENTIFIER=BP5R4U8U6J
           app-store-connect fetch-signing-files "$BUNDLE_ID" \
             --type IOS_APP_STORE \
             --create
+
 
       - name: Apply signing profiles
         script: |
