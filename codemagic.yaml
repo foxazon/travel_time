@@ -12,22 +12,6 @@ workflows:
         BUNDLE_ID: "com.traveltime.converter"
 
     scripts:
-      - name: Fetch signing files (App Store Connect API)
-        script: |
-          export APP_STORE_CONNECT_ISSUER_ID=c32696c2-4192-4ac3-a840-0da105abe126
-          export APP_STORE_CONNECT_KEY_IDENTIFIER=BP5R4U8U6J
-          export APP_STORE_CONNECT_PRIVATE_KEY=$(cat "$CM_APP_STORE_CONNECT_PRIVATE_KEY")
-          app-store-connect fetch-signing-files "$BUNDLE_ID" \
-            --type IOS_APP_STORE \
-            --create
-
-
-
-      - name: Apply signing profiles
-        script: |
-          keychain initialize
-          xcode-project use-profiles
-
       - name: Get Flutter packages
         script: |
           flutter pub get
@@ -46,10 +30,3 @@ workflows:
         key_id: BP5R4U8U6J
         issuer_id: c32696c2-4192-4ac3-a840-0da105abe126
         submit_to_testflight: true
-
-      email:
-        recipients:
-          - travel.time.converter@gmail.com
-        notify:
-          success: true
-          failure: true
