@@ -23,15 +23,18 @@ workflows:
     artifacts:
       - build/ios/ipa/*.ipa
       - /tmp/xcodebuild_logs/*.log
+      
+publishing:
+  app_store_connect:
+    api_key: Codemagic
+    key_id: BP5R4U8U6J
+    issuer_id: c32696c2-4192-4ac3-a840-0da105abe126
+    submit_to_testflight: true
 
-    publishing:
-      app_store_connect:
-        api_key: Codemagic
-        submit_to_testflight: true
+  email:
+    recipients:
+      - travel.time.converter@gmail.com
+    notify:
+      success: true
+      failure: true
 
-      email:
-        recipients:
-          - travel.time.converter@gmail.com
-        notify:
-          success: true
-          failure: true
