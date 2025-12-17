@@ -12,14 +12,20 @@ workflows:
         BUNDLE_ID: "com.traveltime.converter"
 
     scripts:
-      - name: Get Flutter packages
+      - name: Fetch signing files (App Store Connect API)
         script: |
-          flutter packages pub get
+          app-store-connect fetch-signing-files "$BUNDLE_ID" \
+            --type IOS_APP_STORE \
+            --create
 
       - name: Apply signing profiles
         script: |
           keychain initialize
           xcode-project use-profiles
+
+      - name: Get Flutter packages
+        script: |
+          flutter pub get
 
       - name: Build iOS IPA
         script: |
