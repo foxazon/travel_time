@@ -3,14 +3,16 @@ workflows:
     name: iOS Workflow
     max_build_duration: 120
     instance_type: mac_mini_m1
-    integrations:
-      app_store_connect: codemagic
     environment:
       flutter: stable
       xcode: latest
       cocoapods: default
+      groups:
+        - apple_credentials
       vars:
         BUNDLE_ID: "com.traveltime.converter"
+        APP_STORE_CONNECT_ISSUER_ID: c32696c2-4192-4ac3-a840-0da105abe126
+        APP_STORE_CONNECT_KEY_IDENTIFIER: BP5R4U8U6J
     scripts:
       - name: Set up code signing
         script: |
@@ -30,3 +32,9 @@ workflows:
           flutter build ipa --release
     artifacts:
       - build/ios/ipa/*.ipa
+    publishing:
+      app_store_connect:
+        api_key: $APP_STORE_CONNECT_PRIVATE_KEY
+        key_id: $APP_STORE_CONNECT_KEY_IDENTIFIER
+        issuer_id: $APP_STORE_CONNECT_ISSUER_ID
+        submit_to_testflight: true
