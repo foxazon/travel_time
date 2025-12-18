@@ -4,7 +4,7 @@ workflows:
     max_build_duration: 120
     instance_type: mac_mini_m1
     integrations:
-      app_store_connect: Codemagic
+      app_store_connect: codemagic
     environment:
       flutter: stable
       xcode: latest
@@ -30,6 +30,3 @@ workflows:
           flutter build ipa --release
     artifacts:
       - build/ios/ipa/*.ipa
-    publishing:
-      app_store_connect:
-        submit_to_testflight: true
